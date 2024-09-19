@@ -1,0 +1,19 @@
+# Используем Node.js для сервера
+FROM node:16
+
+WORKDIR /app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем весь код
+COPY . .
+
+# Открываем порт, на котором работает Express
+EXPOSE 5000
+
+# Запускаем сервер Express
+CMD ["npm", "start"]
